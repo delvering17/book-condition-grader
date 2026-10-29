@@ -15,6 +15,7 @@
 | Codex CLI 로컬 카탈로그 발견 | 통과 | 0.165.0-alpha.1.2, 일회성 -c marketplaces 설정으로 AVAILABLE·version 0.1.0 반환 |
 | Codex 플러그인 설치·모델 호출 | 미실행 | 목록 결과는 installed=false이며 발견 성공만 확인 |
 | 단일 링크 지침 | 생성·원본 일치 검사 통과 | GRADING.md에 Skill·참조 내용을 함께 수록. 링크와 사진으로 실제 대화 판독은 미실행 |
+| 공개 지침 URL 접근 | 일반 HTTP 200·웹 읽기 도구 실패 | GitHub 보기·raw URL 모두 비로그인 GET 200. 현재 웹 읽기 도구에서는 두 URL이 Cache miss로 열리지 않아 해당 경로의 내용 열람 성공을 확인하지 못함 |
 | 실제 사진 판독 평가 | 미실행 | 이미지 미제공; 성공 수·정확도 없음 |
 | 동영상 실제 프레임 분석 | 미실행·미구현 | 미지원 환경에서의 사진 대체 안내를 시나리오로 정의 |
 | ChatGPT 설치 UI·호출 | 미실행 | 일반 ChatGPT 계정의 업로드·선택·사진 결과 미확인 |
@@ -39,3 +40,5 @@ codex -c 'marketplaces.book-condition-grader-local.source="/absolute/path/to/boo
 스키마 통과·ZIP 생성·카탈로그 발견은 이미지 판독 성공이나 공개 심사 승인을 입증하지 않는다.
 
 0.1.1 변경: README 맨 앞에 링크와 짧은 요청 예시를 추가하고 단일 판독 문서 GRADING.md를 생성했다. 실제 사진 판독 32개는 계속 미실행이며, 링크 경로가 모든 ChatGPT 환경에서 실행된다는 의미는 아니다.
+
+게시 후 일반 HTTP 요청으로 GRADING.md 공개 접근을 확인했다. 현재 웹 읽기 도구는 GitHub 보기·raw 링크 모두 Cache miss를 반환했다. 파일이 공개되어 있다는 사실과 ChatGPT가 그 링크 내용을 실제로 읽는다는 사실은 별도로 검증해야 한다.
