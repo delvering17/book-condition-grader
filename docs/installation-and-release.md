@@ -12,7 +12,7 @@ https://github.com/delvering17/book-condition-grader
 
 README 자체에 전체 지침과 기준을 포함한다. 같은 내용을 [전체 판독 지침](../GRADING.md)에서도 읽을 수 있다. 사용자에게 개별 참조 문서를 지정하거나 별도의 요청 문장을 덧붙이도록 요구하지 않는다. 첨부가 없다면 외관 6방향 사진 또는 장면마다 최소 2초씩 멈춰 찍는 영상을 안내한다. 사진은 한 장부터 받을 수 있다. 영상은 실제 장면 열람이 가능한 환경에서만 검사하고, 미지원 환경에서는 주요 장면을 캡처한 사진으로 대체한다. 기존 일반 ChatGPT 실사용에서 지침 미준수가 확인됐다. 수정본 재시험은 아직 완료하지 않았다.
 
-뒷표지 바코드 옆 ISBN이 선명하면 별도 바코드 사진 없이 알라딘 팔기 조회 링크를 만든다. 실행 환경이 검색 응답을 읽을 수 있으면 ISBN 일치 상품의 매입 상태와 조회 시각을 표시한다. 읽지 못하면 직접 조회 링크와 실시간 확인 못함을 표시한다. ISBN이 불명확할 때만 근접 사진이나 번호를 요청한다.
+뒷표지 바코드 옆 ISBN이 선명하면 별도 바코드 사진 없이 알라딘 팔기 조회 링크를 만든다. 실행 환경이 검색 응답을 읽을 수 있으면 ISBN 일치 상품의 매입 상태·등급별 매입 예상가·조회 시각을 표시한다. 예상등급에 대응하는 금액은 잠정 여부를 함께 표시하고, 판정 보류·매입불가 상태에서는 적용 금액을 산정하지 않는다. 읽지 못하면 직접 조회 링크와 실시간 확인 못함을 표시하며 가격을 추정하지 않는다. ISBN이 불명확할 때만 근접 사진이나 번호를 요청한다.
 
 ## Skill 설치 또는 파일 첨부로 사용
 
@@ -64,8 +64,8 @@ python3 scripts/package.py build
 생성물:
 
 - `GRADING.md`: 링크로 읽을 수 있게 자동 생성하는 전체 판독 지침
-- `dist/book-condition-grader-plugin-v0.2.0.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
-- `dist/book-condition-grader-skill-v0.2.0.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
+- `dist/book-condition-grader-plugin-v0.2.1.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
+- `dist/book-condition-grader-skill-v0.2.1.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
 - `dist/book-condition-grader-chatgpt-ko.txt`: 일반 대화용 전체 지침
 - `dist/SHA256SUMS`: 배포물 무결성 확인용
 

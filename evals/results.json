@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "recorded_at": "2026-10-29",
-  "skill_version": "0.2.0",
+  "skill_version": "0.2.1",
   "cases": [
     {
       "id": "T01",
@@ -370,6 +370,38 @@
       "evidence": [],
       "environment": null,
       "notes": "ISBN・매입 조회와 고정 템플릿 회귀 평가용 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T47",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "등급별 매입가·정가 혼동·보류·가격 누락 회귀 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T48",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "등급별 매입가·정가 혼동·보류·가격 누락 회귀 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T49",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "등급별 매입가·정가 혼동·보류·가격 누락 회귀 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T50",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "등급별 매입가·정가 혼동·보류·가격 누락 회귀 시나리오. 실제 사진 대화 실행 미실행."
     }
   ],
   "field_tests": [

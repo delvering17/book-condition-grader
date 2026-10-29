@@ -1614,6 +1614,196 @@
           "D01"
         ]
       }
+    },
+    {
+      "id": "T47",
+      "title": "정가와 매입가를 구분하고 잠정 상 금액 표시",
+      "tags": [
+        "isbn-lookup",
+        "purchase-prices",
+        "fixed-result-template"
+      ],
+      "input": {
+        "media": "image",
+        "fixtures": [],
+        "fixture_spec": "ISBN 9791141691370 일치 상품의 통제된 조회 응답에 정가 18,500원, 매입가 최상 8,900원·상 8,000원·중 7,100원과 팔기 추가 동작이 표시됨. 외관 6면에 표지의 가벼운 마모만 보이고 내부·제본 자료 없음.",
+        "user_prompt": "https://github.com/delvering17/book-condition-grader",
+        "user_confirmation": ""
+      },
+      "expected": {
+        "grade": "상",
+        "scope": "확인된 외관·잠정",
+        "purchase_status": "조회상 매입 가능",
+        "lookup": {
+          "isbn13": "9791141691370",
+          "url": "https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx?ActionType=1&SearchTarget=All&KeyWord=9791141691370",
+          "request_expected": true
+        },
+        "purchase_prices": {
+          "최상": "8,900원",
+          "상": "8,000원",
+          "중": "7,100원",
+          "selected": "8,000원",
+          "selected_note": "상 가정·잠정"
+        },
+        "reasoning": [
+          "같은 상품 행의 세 매입가를 결과표에 넣고 상 금액에 잠정 표시를 붙인다. 정가 18,500원이나 다른 상품의 금액을 적용하지 않는다."
+        ],
+        "unknowns": [
+          "내부·제본",
+          "최종 접수 시 등급·금액"
+        ],
+        "follow_up": [
+          "필요한 내부·제본 사진"
+        ],
+        "rule_ids": [
+          "A01",
+          "A11",
+          "D01"
+        ]
+      }
+    },
+    {
+      "id": "T48",
+      "title": "품질 판정 보류 중에는 등급별 가격만 참고 표시",
+      "tags": [
+        "isbn-lookup",
+        "purchase-prices",
+        "fixed-result-template"
+      ],
+      "input": {
+        "media": "image",
+        "fixtures": [],
+        "fixture_spec": "ISBN 9791141691370 일치 상품의 통제된 조회 응답에 정가 18,500원, 매입가 최상 8,900원·상 8,000원·중 7,100원과 팔기 추가 동작이 표시됨. 책등 찢김이 확인되나 크기·깊이·제본 영향은 미확인.",
+        "user_prompt": "https://github.com/delvering17/book-condition-grader",
+        "user_confirmation": ""
+      },
+      "expected": {
+        "grade": "판정 보류",
+        "scope": "손상 범위 확인 전",
+        "purchase_status": "조회상 매입 가능",
+        "lookup": {
+          "isbn13": "9791141691370",
+          "url": "https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx?ActionType=1&SearchTarget=All&KeyWord=9791141691370",
+          "request_expected": true
+        },
+        "purchase_prices": {
+          "최상": "8,900원",
+          "상": "8,000원",
+          "중": "7,100원",
+          "selected": null,
+          "selected_note": "산정 보류"
+        },
+        "reasoning": [
+          "조회된 등급별 가격은 보여주되 찢김의 크기·연결 상태를 확인하기 전에는 중 등급이나 7,100원을 적용 금액으로 선택하지 않는다."
+        ],
+        "unknowns": [
+          "찢김 크기·깊이",
+          "제본 영향"
+        ],
+        "follow_up": [
+          "자와 함께 찍은 근접 사진",
+          "펼친 연결부 사진"
+        ],
+        "rule_ids": [
+          "A01",
+          "A02",
+          "D08"
+        ]
+      }
+    },
+    {
+      "id": "T49",
+      "title": "조회상 매입 대상이어도 품질상 매입불가이면 금액 미산정",
+      "tags": [
+        "isbn-lookup",
+        "purchase-prices",
+        "fixed-result-template"
+      ],
+      "input": {
+        "media": "image",
+        "fixtures": [],
+        "fixture_spec": "ISBN 9791141691370 일치 상품의 통제된 조회 응답에 정가 18,500원, 매입가 최상 8,900원·상 8,000원·중 7,100원과 팔기 추가 동작이 표시됨. 자와 함께 찍은 표지 찢김의 최장 길이가 3cm로 명확함.",
+        "user_prompt": "https://github.com/delvering17/book-condition-grader",
+        "user_confirmation": ""
+      },
+      "expected": {
+        "grade": "매입불가",
+        "scope": "물리적 상태 사유",
+        "purchase_status": "조회상 매입 가능",
+        "lookup": {
+          "isbn13": "9791141691370",
+          "url": "https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx?ActionType=1&SearchTarget=All&KeyWord=9791141691370",
+          "request_expected": true
+        },
+        "purchase_prices": {
+          "최상": "8,900원",
+          "상": "8,000원",
+          "중": "7,100원",
+          "selected": null,
+          "selected_note": "품질상 매입불가·등급별 금액은 참고값"
+        },
+        "reasoning": [
+          "물리적 매입불가를 최저 거래 등급인 중으로 바꾸지 않는다. 조회 가격은 참고값이며 이 책을 7,100원에 팔 수 있다고 하지 않는다."
+        ],
+        "unknowns": [
+          "최종 접수 결과"
+        ],
+        "follow_up": [],
+        "rule_ids": [
+          "A01",
+          "A11",
+          "D01"
+        ]
+      }
+    },
+    {
+      "id": "T50",
+      "title": "상 매입가가 공란이면 평균이나 다른 등급으로 채우지 않기",
+      "tags": [
+        "isbn-lookup",
+        "purchase-prices",
+        "fixed-result-template"
+      ],
+      "input": {
+        "media": "image",
+        "fixtures": [],
+        "fixture_spec": "ISBN 9791141691370 일치 상품에 매입 가능 안내·팔기 추가 동작과 정가 18,500원·최상 8,900원·중 7,100원이 표시되나 상 매입가 칸은 공란. 외관 사진에는 표지의 가벼운 마모만 보이며 내부·제본은 미촬영.",
+        "user_prompt": "https://github.com/delvering17/book-condition-grader",
+        "user_confirmation": ""
+      },
+      "expected": {
+        "grade": "상",
+        "scope": "확인된 외관·잠정",
+        "purchase_status": "조회상 매입 가능",
+        "lookup": {
+          "isbn13": "9791141691370",
+          "url": "https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx?ActionType=1&SearchTarget=All&KeyWord=9791141691370",
+          "request_expected": true
+        },
+        "purchase_prices": {
+          "최상": "8,900원",
+          "상": null,
+          "중": "7,100원",
+          "selected": null,
+          "selected_note": "상 금액 확인 못함"
+        },
+        "reasoning": [
+          "최상·중 가격은 그대로 표시하되 상 가격과 적용 금액은 확인 못함으로 남긴다. 공란을 0원·평균 8,000원·다른 등급 금액으로 대체하지 않는다."
+        ],
+        "unknowns": [
+          "상 매입가",
+          "내부·제본"
+        ],
+        "follow_up": [
+          "필요한 내부·제본 사진"
+        ],
+        "rule_ids": [
+          "A01",
+          "A11",
+          "D01"
+        ]
+      }
     }
   ]
 }
