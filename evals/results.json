@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-29",
+  "skill_version": "0.1.0",
+  "cases": [
+    {
+      "id": "T01",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T02",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T03",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T04",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T05",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T06",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T07",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T08",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T09",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T10",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T11",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T12",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T13",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T14",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T15",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T16",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T17",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T18",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T19",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T20",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T21",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T22",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T23",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T24",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T25",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T26",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T27",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T28",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T29",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T30",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T31",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    },
+    {
+      "id": "T32",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "실제 이미지·호스트 실행 증거 미제공. 시나리오 설계만 완료."
+    }
+  ]
+}

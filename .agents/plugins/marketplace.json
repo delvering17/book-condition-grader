@@ -1,0 +1,20 @@
+{
+  "name": "book-condition-grader-local",
+  "interface": {
+    "displayName": "중고책 품질등급 판독기"
+  },
+  "plugins": [
+    {
+      "name": "book-condition-grader",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

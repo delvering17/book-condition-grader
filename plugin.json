@@ -1,0 +1,41 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "book-condition-grader",
+  "version": "0.1.0",
+  "description": "책 사진에서 관찰한 상태를 알라딘 공개 품질표와 대조하는 비공식 한국어 예상등급 도구입니다.",
+  "author": {
+    "name": "Chanwook Song",
+    "url": "https://github.com/delvering17"
+  },
+  "homepage": "https://github.com/delvering17/book-condition-grader",
+  "repository": "https://github.com/delvering17/book-condition-grader",
+  "license": "MIT",
+  "keywords": ["books", "condition", "vision", "korean", "skills"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "중고책 품질등급 판독기",
+        "shortDescription": "책 사진으로 확인하는 비공식 예상등급",
+        "longDescription": "중고책 사진 한 장부터 관찰을 시작하고 표지·책등·책배·내부·제본을 알라딘 공개 품질표와 대조합니다. 확인하지 못한 부분은 확인 불가로 남기며, 근거가 부족하면 판정 보류를 사용합니다. 알라딘의 공식 감정이나 매입 승인을 대신하지 않습니다. 동영상 직접 처리와 프레임 추출은 제공하지 않습니다.",
+        "developerName": "Chanwook Song",
+        "category": "Productivity",
+        "capabilities": ["책 사진 상태 확인", "예상 품질등급 안내", "추가 촬영 안내"],
+        "websiteURL": "https://github.com/delvering17/book-condition-grader",
+        "supportURL": "https://github.com/delvering17/book-condition-grader/issues",
+        "privacyPolicyURL": "https://github.com/delvering17/book-condition-grader/blob/main/docs/privacy.md",
+        "termsOfServiceURL": "https://github.com/delvering17/book-condition-grader/blob/main/docs/terms.md",
+        "defaultPrompt": [
+          "이 책 사진으로 예상 품질등급을 알려줘. 보이지 않는 부분은 확인 불가로 남겨줘.",
+          "책의 찢어진 부분을 자와 함께 찍었어. 품질등급에 어떤 영향을 주는지 확인해 줘.",
+          "책을 팔기 전에 어느 부분을 더 촬영하면 좋을지 알려줘."
+        ],
+        "brandColor": "#25635C",
+        "composerIcon": "./assets/book.svg",
+        "logo": "./assets/book.svg"
+      },
+      "publication": {
+        "release_notes": "사진 중심 Skill MVP. 공개 품질표 대조, 확인 불가·판정 보류, 매입 조건 분리, 동영상 대체 안내를 제공합니다."
+      }
+    }
+  }
+}

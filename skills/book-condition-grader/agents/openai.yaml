@@ -1,0 +1,4 @@
+interface:
+  display_name: "중고책 품질등급 판독기"
+  short_description: "책 사진을 알라딘 공개 기준과 대조해 비공식 예상 품질등급 안내"
+  default_prompt: "$book-condition-grader 첨부한 책 사진의 예상 품질등급을 알려줘. 보이지 않는 부분은 확인 불가로 남겨줘."
