@@ -10,7 +10,7 @@
 https://github.com/delvering17/book-condition-grader
 ```
 
-README에서 [전체 판독 지침](../GRADING.md)으로 연결한다. 사용자에게 개별 참조 문서를 지정하거나 별도의 요청 문장을 덧붙이도록 요구하지 않는다. 첨부가 없다면 외관 6방향 사진 또는 장면마다 최소 2초씩 멈춰 찍는 영상을 안내한다. 사진은 한 장부터 받을 수 있다. 영상은 실제 장면 열람이 가능한 환경에서만 검사하고, 미지원 환경에서는 주요 장면을 캡처한 사진으로 대체한다. 실제 사진·영상 판독은 아직 미검증이다.
+README 자체에 전체 지침과 기준을 포함한다. 같은 내용을 [전체 판독 지침](../GRADING.md)에서도 읽을 수 있다. 사용자에게 개별 참조 문서를 지정하거나 별도의 요청 문장을 덧붙이도록 요구하지 않는다. 첨부가 없다면 외관 6방향 사진 또는 장면마다 최소 2초씩 멈춰 찍는 영상을 안내한다. 사진은 한 장부터 받을 수 있다. 영상은 실제 장면 열람이 가능한 환경에서만 검사하고, 미지원 환경에서는 주요 장면을 캡처한 사진으로 대체한다. 기존 일반 ChatGPT 실사용에서 지침 미준수가 확인됐다. 수정본 재시험은 아직 완료하지 않았다.
 
 ## Skill 설치 또는 파일 첨부로 사용
 
@@ -62,14 +62,14 @@ python3 scripts/package.py build
 생성물:
 
 - `GRADING.md`: 링크로 읽을 수 있게 자동 생성하는 전체 판독 지침
-- `dist/book-condition-grader-plugin-v0.1.3.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
-- `dist/book-condition-grader-skill-v0.1.3.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
+- `dist/book-condition-grader-plugin-v0.1.4.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
+- `dist/book-condition-grader-skill-v0.1.4.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
 - `dist/book-condition-grader-chatgpt-ko.txt`: 일반 대화용 전체 지침
 - `dist/SHA256SUMS`: 배포물 무결성 확인용
 
 사용자의 사진·`.git`·로컬 인증정보·개발용 실행 스크립트는 플러그인 ZIP에 포함하지 않는다. 텍스트 평가 시나리오와 검증 현황은 포함한다. 패키저 검증은 포털의 보안 스캔이나 실제 사진 판독 평가를 대신하지 않는다.
 
-`GRADING.md`는 Skill과 참조 문서를 합쳐 생성한다. 원본을 수정한 뒤 `guide`로 갱신해야 `check`를 통과한다. portable 패키지는 루트 `plugin.json`과 `skills/`를 사용하고, 개발용 로컬 카탈로그는 `.agents/plugins/marketplace.json`에 둔다. 공식 규격 출처는 [Skill 제작](https://developers.openai.com/plugins/build/skills)과 [Plugin 패키징](https://developers.openai.com/plugins/build/plugins)을 참고한다.
+`GRADING.md`와 README 하단 판독 지침은 Skill과 참조 문서를 합쳐 생성한다. 원본을 수정한 뒤 `guide`로 갱신해야 `check`를 통과한다. portable 패키지는 루트 `plugin.json`과 `skills/`를 사용하고, 개발용 로컬 카탈로그는 `.agents/plugins/marketplace.json`에 둔다. 공식 규격 출처는 [Skill 제작](https://developers.openai.com/plugins/build/skills)과 [Plugin 패키징](https://developers.openai.com/plugins/build/plugins)을 참고한다.
 
 ## OpenAI 공개 제출
 

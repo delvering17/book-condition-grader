@@ -73,6 +73,22 @@ class PackageTests(unittest.TestCase):
         package.write_guide(self.root)
         package.build(self.root)
 
+    def test_repository_home_contains_complete_rules_without_following_links(self):
+        package.write_guide(self.root)
+        readme = (self.root / "README.md").read_text()
+        for ref in package.REFERENCES:
+            content = (self.root / package.SKILL_DIR / "references" / ref).read_text()
+            self.assertIn(content, readme)
+        self.assertNotIn("**예상등급: [등급", readme)
+
+    def test_tampered_home_page_rules_stop_build_until_regenerated(self):
+        destination = self.root / "README.md"
+        destination.write_text(destination.read_text().replace("찢김≤2cm", "찢김≤20cm"))
+        with self.assertRaises(ValueError):
+            package.build(self.root)
+        package.write_guide(self.root)
+        package.build(self.root)
+
     def test_missing_or_escaping_icon_stops_build(self):
         manifest_path = self.root / "plugin.json"
         manifest = json.loads(manifest_path.read_text())

@@ -13,6 +13,8 @@ SKILL_NAME = "book-condition-grader"
 SKILL_DIR = Path("skills") / SKILL_NAME
 REFERENCES = ("aladin-grading-rules.md", "inspection-guide.md")
 GRADES = {"최상", "상", "중", "매입불가", "판정 보류"}
+README_START = "<!-- BEGIN GENERATED GRADING -->"
+README_END = "<!-- END GENERATED GRADING -->"
 
 
 def read_json(root, relative):
@@ -53,7 +55,7 @@ def plugin_files(root):
         "privacy.md", "terms.md", "installation-and-release.md", "compatibility.md", "grading-example.md"
     ))
     result.update(Path("evals") / name for name in (
-        "evaluation-guide.md", "test-cases.json", "results.json", "validation-report.md"
+        "evaluation-guide.md", "test-cases.json", "results.json", "validation-report.md", "field-test-report.md"
     ))
     result.add(SKILL_DIR / "SKILL.md")
     result.add(SKILL_DIR / "agents/openai.yaml")
@@ -106,6 +108,9 @@ def validate(root=ROOT):
         local_file(root, relative)
     if (root / "GRADING.md").read_text(encoding="utf-8") != grading_guide(root):
         raise ValueError("GRADING.md가 원본과 다릅니다. python3 scripts/package.py guide로 갱신하세요")
+    readme = (root / "README.md").read_text(encoding="utf-8")
+    if readme != updated_readme(root, readme):
+        raise ValueError("README의 판독 지침이 원본과 다릅니다. python3 scripts/package.py guide로 갱신하세요")
     cases = read_json(root, "evals/test-cases.json")["cases"]
     ids = [case["id"] for case in cases]
     if len(cases) < 15 or len(set(ids)) != len(ids):
@@ -117,7 +122,8 @@ def validate(root=ROOT):
         for key in ("unknowns", "follow_up", "rule_ids"):
             if not isinstance(expected[key], list):
                 raise ValueError(f"평가 필드 오류: {case['id']}/{key}")
-    results = read_json(root, "evals/results.json")["cases"]
+    result_log = read_json(root, "evals/results.json")
+    results = result_log["cases"]
     if sorted(item["id"] for item in results) != sorted(ids):
         raise ValueError("평가 결과와 사례의 ID가 일치하지 않습니다")
     for result in results:
@@ -129,6 +135,11 @@ def validate(root=ROOT):
             local_file(root, result["actual_output"])
             for evidence in result["evidence"]:
                 local_file(root, evidence)
+    field_tests = result_log.get("field_tests", [])
+    for field_test in field_tests:
+        if field_test["status"] not in {"passed", "failed", "blocked"}:
+            raise ValueError("실사용 테스트 상태가 잘못되었습니다")
+        local_file(root, field_test["report"])
     catalog = read_json(root, ".agents/plugins/marketplace.json")
     entries = catalog["plugins"]
     if len(entries) != 1 or entries[0]["name"] != manifest["name"]:
@@ -138,7 +149,8 @@ def validate(root=ROOT):
     if any((root / name).exists() for name in ("mcp.json", ".mcp.json", ".app.json")):
         raise ValueError("이 MVP에는 MCP·앱 설정을 포함하지 않습니다")
     return {"version": manifest["version"], "scenario_count": len(cases),
-            "evaluated_count": sum(r["status"] in {"passed", "failed"} for r in results)}
+            "evaluated_count": sum(r["status"] in {"passed", "failed"} for r in results),
+            "field_failures": sum(t["status"] == "failed" for t in field_tests)}
 
 
 def standalone(root):
@@ -169,8 +181,28 @@ def grading_guide(root):
     )
 
 
+def updated_readme(root, content):
+    instructions = standalone(root)
+    instructions = re.sub(
+        r"```markdown\n.*?\n```",
+        "결과에는 적용 지침, 예상등급, 판정 근거 표(검사 항목·관찰·규칙 ID·부분등급), 추가 확인, 종합 의견, 매입 확인, 비공식 주의사항을 포함한다.",
+        instructions, flags=re.S,
+    )
+    block = f"{README_START}\n\n## 판독 지침과 기준\n\n{instructions}\n\n{README_END}"
+    if README_START not in content and README_END not in content:
+        return content.rstrip() + "\n\n" + block + "\n"
+    if content.count(README_START) != 1 or content.count(README_END) != 1:
+        raise ValueError("README의 자동 생성 구간 표시가 잘못되었습니다")
+    before, remainder = content.split(README_START)
+    _, after = remainder.split(README_END)
+    return before + block + after
+
+
 def write_guide(root=ROOT):
+    readme = (root / "README.md").read_text(encoding="utf-8")
+    new_readme = updated_readme(root, readme)
     (root / "GRADING.md").write_text(grading_guide(root), encoding="utf-8")
+    (root / "README.md").write_text(new_readme, encoding="utf-8")
 
 
 def write_zip(destination, files):
