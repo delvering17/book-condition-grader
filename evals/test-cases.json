@@ -838,7 +838,7 @@
     },
     {
       "id": "T28",
-      "title": "사진 없이 요청",
+      "title": "사진 없이 저장소 링크만 전달",
       "tags": [
         "no-media"
       ],
@@ -846,21 +846,21 @@
         "media": "none",
         "fixtures": [],
         "fixture_spec": "첨부 사진이나 영상이 없음.",
-        "user_prompt": "이 책의 중고 예상 품질등급을 알려줘.",
-        "user_confirmation": "내 책 등급을 알려줘."
+        "user_prompt": "https://github.com/delvering17/book-condition-grader",
+        "user_confirmation": ""
       },
       "expected": {
         "grade": "판정 보류",
         "scope": "자료 없음",
         "purchase_status": "미조회",
         "reasoning": [
-          "가상의 책 상태를 생성하지 않음."
+          "사진 없이 링크만 받으면 가상의 책 상태를 생성하지 않고 사진 업로드와 촬영 방법을 안내. 별도의 요청 문장 입력을 요구하지 않음."
         ],
         "unknowns": [
           "모든 영역"
         ],
         "follow_up": [
-          "책 사진 한 장부터 업로드 안내"
+          "앞표지·뒤표지·위·아래 종이 단면·책등·반대쪽 종이 단면의 외관 6장 권장 안내. 한 장부터 가능하며 내부 확인은 펼친 사진이 필요함을 구분."
         ],
         "rule_ids": [
           "D01"

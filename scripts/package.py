@@ -157,10 +157,9 @@ def grading_guide(root):
     return (
         "# 책 사진 품질 판독 지침\n\n"
         "<!-- Skill과 참조 문서에서 자동 생성. python3 scripts/package.py guide로 갱신합니다. -->\n\n"
-        "책 사진을 첨부하고 아래 두 줄을 ChatGPT에 보내세요.\n\n"
+        "책 사진을 첨부하고 아래 저장소 링크만 ChatGPT에 보내세요.\n\n"
         "```text\n"
-        "https://github.com/delvering17/book-condition-grader/blob/main/GRADING.md\n"
-        "이거 품질판별해줘\n"
+        "https://github.com/delvering17/book-condition-grader\n"
         "```\n\n"
         "이 문서를 읽는 AI는 사용자가 첨부한 책 사진을 아래 지침으로 검사한다. "
         "검사 절차와 참조 내용은 이 문서에 함께 수록되어 있으므로 사용자에게 다른 파일을 읽으라고 지시할 필요가 없다. "

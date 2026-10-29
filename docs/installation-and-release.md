@@ -4,14 +4,13 @@
 
 ## 일반 ChatGPT 사용자
 
-책 사진을 첨부하고 아래 요청을 보낸다:
+책 사진을 첨부하고 아래 저장소 링크만 보낸다:
 
 ```text
-https://github.com/delvering17/book-condition-grader/blob/main/GRADING.md
-이거 품질판별해줘
+https://github.com/delvering17/book-condition-grader
 ```
 
-링크 대상에 Skill 절차와 참조 내용이 함께 들어 있다. 사용자에게 개별 참조 문서를 지정하는 문장을 요구하지 않는다. 저장소 홈 링크로 들어오면 README에서 이 판독 지침으로 연결한다. 이 사용 경로는 링크·이미지 열람을 지원하는 환경이 필요하며 실제 사진 판독은 아직 미검증이다.
+README에서 [전체 판독 지침](../GRADING.md)으로 연결한다. 사용자에게 개별 참조 문서를 지정하거나 별도의 요청 문장을 덧붙이도록 요구하지 않는다. 사진이 없다면 외관 6방향 촬영을 안내하되 한 장부터 받을 수 있다. 이 사용 경로는 링크·이미지 열람을 지원하는 환경이 필요하며 실제 사진 판독은 아직 미검증이다.
 
 ## Skill 설치 또는 파일 첨부로 사용
 
@@ -49,7 +48,11 @@ codex plugin marketplace list
 
 ## 배포물 만들기
 
+Python 3.9 이상에서 외부 패키지 없이 검사·패키징할 수 있다. 백엔드·DB·MCP·별도 모델 학습이나 API 키는 필요 없다. 사진 이해는 실행 중인 ChatGPT/Codex 환경을 사용한다.
+
 ```sh
+git clone https://github.com/delvering17/book-condition-grader.git
+cd book-condition-grader
 python3 scripts/package.py guide
 python3 scripts/package.py check
 python3 -m unittest discover -s tests -v
@@ -59,12 +62,14 @@ python3 scripts/package.py build
 생성물:
 
 - `GRADING.md`: 링크로 읽을 수 있게 자동 생성하는 전체 판독 지침
-- `dist/book-condition-grader-plugin-v0.1.1.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
-- `dist/book-condition-grader-skill-v0.1.1.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
+- `dist/book-condition-grader-plugin-v0.1.2.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
+- `dist/book-condition-grader-skill-v0.1.2.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
 - `dist/book-condition-grader-chatgpt-ko.txt`: 일반 대화용 전체 지침
 - `dist/SHA256SUMS`: 배포물 무결성 확인용
 
 사용자의 사진·`.git`·로컬 인증정보·개발용 실행 스크립트는 플러그인 ZIP에 포함하지 않는다. 텍스트 평가 시나리오와 검증 현황은 포함한다. 패키저 검증은 포털의 보안 스캔이나 실제 사진 판독 평가를 대신하지 않는다.
+
+`GRADING.md`는 Skill과 참조 문서를 합쳐 생성한다. 원본을 수정한 뒤 `guide`로 갱신해야 `check`를 통과한다. portable 패키지는 루트 `plugin.json`과 `skills/`를 사용하고, 개발용 로컬 카탈로그는 `.agents/plugins/marketplace.json`에 둔다. 공식 규격 출처는 [Skill 제작](https://developers.openai.com/plugins/build/skills)과 [Plugin 패키징](https://developers.openai.com/plugins/build/plugins)을 참고한다.
 
 ## OpenAI 공개 제출
 
