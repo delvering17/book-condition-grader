@@ -50,7 +50,7 @@ def plugin_files(root):
     interface = manifest["extensions"]["com.openai"]["interface"]
     result = {Path("plugin.json"), Path("README.md"), Path("LICENSE")}
     result.update(Path("docs") / name for name in (
-        "privacy.md", "terms.md", "installation-and-release.md", "compatibility.md"
+        "privacy.md", "terms.md", "installation-and-release.md", "compatibility.md", "grading-example.md"
     ))
     result.update(Path("evals") / name for name in (
         "evaluation-guide.md", "test-cases.json", "results.json", "validation-report.md"
