@@ -6,6 +6,7 @@
 | --- | --- | --- |
 | Skill 전용 Plugin | MCP 없이 지침·참조만 포함 가능 | 구현 |
 | portable 패키지 | 루트 plugin.json + skills/, OpenAI 설정은 extensions.com.openai | 구현·공식 스키마 검사 통과 |
+| 단일 링크 요청 | Skill 내용을 대화에서 읽어 적용하는 사용 경로이며 자동 설치를 뜻하지 않음 | GRADING.md 제공·원본 일치 검사 통과, 실제 링크+사진 판독 미시험 |
 | 사진 입력 | ChatGPT 이미지 첨부, Codex 이미지 입력 제공 | 사진 시험 자료 없음, 정확도 미측정 |
 | ChatGPT Skill 업로드 | 공식 사용 안내에 업로드 경로 제시 | 해당 계정 UI의 실제 설치·호출 미시험 |
 | 로컬 카탈로그 | 데스크톱·CLI의 로컬/Git marketplace 지원 | Codex CLI 0.165.0-alpha.1.2에서 AVAILABLE 발견 확인. 설치·모델 호출은 미시험 |

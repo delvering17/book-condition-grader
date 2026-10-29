@@ -1,22 +1,31 @@
 # Book Condition Grader · 중고책 품질등급 판독기
 
+## 사진으로 바로 판독하기
+
+ChatGPT에 **책 사진을 첨부하고 아래 두 줄을 보내세요.**
+
+```text
+https://github.com/delvering17/book-condition-grader/blob/main/GRADING.md
+이거 품질판별해줘
+```
+
+[판독 지침](GRADING.md)에 검사 절차와 기준을 함께 담았습니다. 참조 문서를 따로 지정하거나 TXT를 내려받을 필요 없이 이 링크로 요청할 수 있도록 구성했습니다. 링크와 사진을 열람할 수 있는 환경이 필요하며, 링크만으로 실제 판독하는 방식은 아직 실사용 검증 전입니다.
+
+저장소 홈 링크와 사진을 받은 AI는 위 판독 지침을 열어 첨부된 책의 품질을 검사합니다. 사진이 없다면 책 사진 한 장부터 요청합니다. 링크를 읽을 수 없다면 그 사실을 알리고 [대체 사용 방법](docs/installation-and-release.md)을 안내합니다.
+
 책 사진을 ChatGPT 또는 Codex에 올리면 **알라딘 공개 품질표에 따른 예상등급**과 추가 확인 사항을 한국어로 안내하는 Skill 기반 오픈소스입니다. 사진 한 장부터 시작합니다. 알라딘·OpenAI와 제휴하거나 이들의 공식 감정을 제공하는 제품이 아닙니다.
 
 백엔드·DB·MCP 서버·별도 모델 학습·외부 유료 API·API 키가 필요 없습니다. 이미지 이해는 사용 중인 ChatGPT/Codex가 수행하므로 해당 서비스의 요금제·사용 한도·이미지 접근 권한은 적용됩니다.
 
-## 바로 사용하기
+## 설치해서 계속 사용하기
 
-**공개 플러그인 디렉터리: 미제출·미승인·미게시.** GitHub 공개와 OpenAI 디렉터리 승인은 별개입니다. 현재는 아래 직접 업로드 방식으로 사용할 수 있습니다. 실제 사진 판독 정확도와 ChatGPT 화면에서의 설치 완료는 아직 검증하지 않았습니다.
+**공개 플러그인 디렉터리: 미제출·미승인·미게시.** GitHub 공개와 OpenAI 디렉터리 승인은 별개입니다. 계정에서 Skill 설치를 지원하면 아래 방식으로 등록할 수 있습니다. 실제 사진 판독 정확도와 ChatGPT 화면에서의 설치 완료는 아직 검증하지 않았습니다.
 
-1. [릴리스 페이지](https://github.com/delvering17/book-condition-grader/releases)에서 `book-condition-grader-skill-v0.1.0.zip`을 내려받습니다.
+1. [릴리스 페이지](https://github.com/delvering17/book-condition-grader/releases)에서 최신 버전의 `book-condition-grader-skill-*.zip`을 내려받습니다.
 2. ChatGPT에서 **Skills → New Skill → Upload from your computer** 메뉴가 제공되면 이 ZIP을 업로드합니다. 메뉴 이름·제공 여부는 계정과 워크스페이스 정책에 따라 다를 수 있습니다.
 3. 새 대화에서 Skill을 선택하고 책 사진을 올려 “이 책의 예상 품질등급을 알려줘”라고 요청합니다.
 
-Skill 업로드 메뉴가 없다면 같은 릴리스의 `book-condition-grader-chatgpt-ko.txt`와 책 사진을 일반 ChatGPT 대화에 함께 첨부하고 다음 문장을 보냅니다. ZIP을 일반 대화에 첨부하는 것만으로 플러그인이 설치되지는 않습니다.
-
-> 첨부한 중고책 판독 지침을 읽고 책 사진을 검사해 줘. 사진에서 보이는 사실과 내 설명을 구분하고, 보이지 않는 부분은 확인 불가로 남겨줘.
-
-이는 대화에 지침을 제공하는 대체 사용 방식입니다. 사진을 읽을 수 없는 모델·환경에서는 판독할 수 없습니다. [설치·공개 배포 안내](docs/installation-and-release.md)에 Codex와 로컬 플러그인 설치법을 정리했습니다.
+ZIP을 일반 대화에 첨부하는 것만으로 플러그인이 설치되지는 않습니다. 링크를 읽을 수 없는 환경을 위한 TXT 첨부 방법과 Codex·로컬 플러그인 설치법은 [설치·공개 배포 안내](docs/installation-and-release.md)를 참고하세요.
 
 ## 사용 예시
 
@@ -63,10 +72,13 @@ python3 -m unittest discover -s tests -v
 python3 scripts/package.py build
 ```
 
-`dist/`에 플러그인 ZIP, Skill ZIP, 일반 ChatGPT용 단일 지침 TXT와 SHA256 목록을 만듭니다. `plugin.json`은 최신 공식 문서의 portable Agent Plugins 형식이며, Skill은 루트 `skills/`에서 발견되므로 루트 `skills` 필드를 추가하지 않습니다. `.agents/plugins/marketplace.json`은 개발용 로컬 카탈로그입니다.
+`dist/`에 플러그인 ZIP, Skill ZIP, 일반 ChatGPT용 단일 지침 TXT와 SHA256 목록을 만듭니다. 링크용 `GRADING.md`는 Skill과 참조 문서에서 자동 생성합니다. 지침을 수정한 뒤 `python3 scripts/package.py guide`로 갱신하면, `check`가 원본과의 일치 여부도 확인합니다.
+
+`plugin.json`은 최신 공식 문서의 portable Agent Plugins 형식이며, Skill은 루트 `skills/`에서 발견되므로 루트 `skills` 필드를 추가하지 않습니다. `.agents/plugins/marketplace.json`은 개발용 로컬 카탈로그입니다.
 
 ```text
 plugin.json
+GRADING.md                   링크 하나로 읽는 판독 지침 (자동 생성)
 skills/book-condition-grader/
   SKILL.md
   agents/openai.yaml

@@ -32,6 +32,7 @@ class PackageTests(unittest.TestCase):
         with zipfile.ZipFile(products[0]) as archive:
             names = set(archive.namelist())
             self.assertIn("plugin.json", names)
+            self.assertIn("GRADING.md", names)
             self.assertIn("skills/book-condition-grader/SKILL.md", names)
             self.assertIn("assets/book.svg", names)
             self.assertNotIn(".env", names)
@@ -63,6 +64,14 @@ class PackageTests(unittest.TestCase):
         (self.root / package.SKILL_DIR / "references" / package.REFERENCES[0]).unlink()
         with self.assertRaises(ValueError):
             package.build(self.root)
+
+    def test_stale_link_guide_stops_build_until_regenerated(self):
+        reference = self.root / package.SKILL_DIR / "references" / package.REFERENCES[0]
+        reference.write_text(reference.read_text() + "\n개정된 적용 안내.\n")
+        with self.assertRaises(ValueError):
+            package.build(self.root)
+        package.write_guide(self.root)
+        package.build(self.root)
 
     def test_missing_or_escaping_icon_stops_build(self):
         manifest_path = self.root / "plugin.json"

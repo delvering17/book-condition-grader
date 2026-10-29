@@ -4,9 +4,20 @@
 
 ## 일반 ChatGPT 사용자
 
+책 사진을 첨부하고 아래 요청을 보낸다:
+
+```text
+https://github.com/delvering17/book-condition-grader/blob/main/GRADING.md
+이거 품질판별해줘
+```
+
+링크 대상에 Skill 절차와 참조 내용이 함께 들어 있다. 사용자에게 개별 참조 문서를 지정하는 문장을 요구하지 않는다. 저장소 홈 링크로 들어오면 README에서 이 판독 지침으로 연결한다. 이 사용 경로는 링크·이미지 열람을 지원하는 환경이 필요하며 실제 사진 판독은 아직 미검증이다.
+
+## Skill 설치 또는 파일 첨부로 사용
+
 현재 OpenAI 디렉터리에는 게시되지 않았다. [GitHub Releases](https://github.com/delvering17/book-condition-grader/releases)에서 제공하는 Skill ZIP을, 계정에 제공되는 Skills → New Skill → Upload from your computer 메뉴로 업로드한다. 새 대화에서 Skill을 선택하고 사진을 첨부한다. [공식 업로드 사용 예](https://developers.openai.com/cookbook/examples/chatgpt/chatgpt_prompt_guide/chatgpt_prompt_guide)를 참고한다.
 
-해당 메뉴가 없다면 릴리스의 `book-condition-grader-chatgpt-ko.txt`를 사진과 함께 대화에 첨부하고 “첨부 지침을 읽고 이 책 사진을 판독해 줘”라고 요청한다. 이 파일은 SKILL과 두 참조 문서를 합쳐 만든 것이어서 참조 파일이 빠지지 않는다. 텍스트 파일의 내용을 읽지 못하면 파일 내용을 메시지에 붙여 넣는다. 새 대화에는 다시 제공해야 한다. 일반 대화에 ZIP 업로드만 해서는 설치되지 않는다.
+링크를 열 수 없고 Skill 설치도 지원하지 않는 환경이라면 릴리스의 `book-condition-grader-chatgpt-ko.txt`를 사진과 함께 대화에 첨부하고 “첨부 지침으로 이거 품질판별해줘”라고 요청한다. 이 파일은 SKILL과 참조 문서를 합쳐 만든 것이어서 참조 파일이 빠지지 않는다. 텍스트 파일의 내용을 읽지 못하면 파일 내용을 메시지에 붙여 넣는다. 새 대화에는 다시 제공해야 한다. 일반 대화에 ZIP 업로드만 해서는 설치되지 않는다.
 
 공개 승인 후의 목표 흐름은 Plugins에서 설치 → 책 사진 업로드 → 예상등급 확인이다. 공개 게시 URL·자격·설치 가능 계정은 승인 전까지 확약하지 않는다.
 
@@ -39,6 +50,7 @@ codex plugin marketplace list
 ## 배포물 만들기
 
 ```sh
+python3 scripts/package.py guide
 python3 scripts/package.py check
 python3 -m unittest discover -s tests -v
 python3 scripts/package.py build
@@ -46,8 +58,9 @@ python3 scripts/package.py build
 
 생성물:
 
-- `dist/book-condition-grader-plugin-v0.1.0.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
-- `dist/book-condition-grader-skill-v0.1.0.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
+- `GRADING.md`: 링크로 읽을 수 있게 자동 생성하는 전체 판독 지침
+- `dist/book-condition-grader-plugin-v0.1.1.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
+- `dist/book-condition-grader-skill-v0.1.1.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
 - `dist/book-condition-grader-chatgpt-ko.txt`: 일반 대화용 전체 지침
 - `dist/SHA256SUMS`: 배포물 무결성 확인용
 

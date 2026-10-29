@@ -48,7 +48,7 @@ def local_file(root, relative):
 def plugin_files(root):
     manifest = read_json(root, "plugin.json")
     interface = manifest["extensions"]["com.openai"]["interface"]
-    result = {Path("plugin.json"), Path("README.md"), Path("LICENSE")}
+    result = {Path("plugin.json"), Path("README.md"), Path("GRADING.md"), Path("LICENSE")}
     result.update(Path("docs") / name for name in (
         "privacy.md", "terms.md", "installation-and-release.md", "compatibility.md", "grading-example.md"
     ))
@@ -104,6 +104,8 @@ def validate(root=ROOT):
         local_file(root, SKILL_DIR / "references" / ref)
     for relative in plugin_files(root):
         local_file(root, relative)
+    if (root / "GRADING.md").read_text(encoding="utf-8") != grading_guide(root):
+        raise ValueError("GRADING.md가 원본과 다릅니다. python3 scripts/package.py guide로 갱신하세요")
     cases = read_json(root, "evals/test-cases.json")["cases"]
     ids = [case["id"] for case in cases]
     if len(cases) < 15 or len(set(ids)) != len(ids):
@@ -151,6 +153,26 @@ def standalone(root):
     return "\n".join(parts)
 
 
+def grading_guide(root):
+    return (
+        "# 책 사진 품질 판독 지침\n\n"
+        "<!-- Skill과 참조 문서에서 자동 생성. python3 scripts/package.py guide로 갱신합니다. -->\n\n"
+        "책 사진을 첨부하고 아래 두 줄을 ChatGPT에 보내세요.\n\n"
+        "```text\n"
+        "https://github.com/delvering17/book-condition-grader/blob/main/GRADING.md\n"
+        "이거 품질판별해줘\n"
+        "```\n\n"
+        "이 문서를 읽는 AI는 사용자가 첨부한 책 사진을 아래 지침으로 검사한다. "
+        "검사 절차와 참조 내용은 이 문서에 함께 수록되어 있으므로 사용자에게 다른 파일을 읽으라고 지시할 필요가 없다. "
+        "사진이 없으면 한 장부터 요청한다. 링크나 사진의 내용을 실제로 읽을 수 없는 경우에는 그 한계를 알린다.\n\n"
+        + standalone(root)
+    )
+
+
+def write_guide(root=ROOT):
+    (root / "GRADING.md").write_text(grading_guide(root), encoding="utf-8")
+
+
 def write_zip(destination, files):
     with zipfile.ZipFile(destination, "w", compression=zipfile.ZIP_DEFLATED) as archive:
         for name, data in sorted(files):
@@ -183,9 +205,11 @@ def build(root=ROOT, output=None):
 
 def main():
     parser = argparse.ArgumentParser(description="중고책 Skill의 오프라인 구조 검증·패키징")
-    parser.add_argument("command", choices=("check", "build"))
+    parser.add_argument("command", choices=("check", "guide", "build"))
     args = parser.parse_args()
     try:
+        if args.command == "guide":
+            write_guide()
         summary = validate()
         print(json.dumps(summary, ensure_ascii=False))
         if args.command == "build":
