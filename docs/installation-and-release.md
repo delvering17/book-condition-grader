@@ -12,6 +12,8 @@ https://github.com/delvering17/book-condition-grader
 
 README 자체에 전체 지침과 기준을 포함한다. 같은 내용을 [전체 판독 지침](../GRADING.md)에서도 읽을 수 있다. 사용자에게 개별 참조 문서를 지정하거나 별도의 요청 문장을 덧붙이도록 요구하지 않는다. 첨부가 없다면 외관 6방향 사진 또는 장면마다 최소 2초씩 멈춰 찍는 영상을 안내한다. 사진은 한 장부터 받을 수 있다. 영상은 실제 장면 열람이 가능한 환경에서만 검사하고, 미지원 환경에서는 주요 장면을 캡처한 사진으로 대체한다. 기존 일반 ChatGPT 실사용에서 지침 미준수가 확인됐다. 수정본 재시험은 아직 완료하지 않았다.
 
+뒷표지 바코드 옆 ISBN이 선명하면 별도 바코드 사진 없이 알라딘 팔기 조회 링크를 만든다. 실행 환경이 검색 응답을 읽을 수 있으면 ISBN 일치 상품의 매입 상태와 조회 시각을 표시한다. 읽지 못하면 직접 조회 링크와 실시간 확인 못함을 표시한다. ISBN이 불명확할 때만 근접 사진이나 번호를 요청한다.
+
 ## Skill 설치 또는 파일 첨부로 사용
 
 현재 OpenAI 디렉터리에는 게시되지 않았다. [GitHub Releases](https://github.com/delvering17/book-condition-grader/releases)에서 제공하는 Skill ZIP을, 계정에 제공되는 Skills → New Skill → Upload from your computer 메뉴로 업로드한다. 새 대화에서 Skill을 선택하고 사진을 첨부한다. [공식 업로드 사용 예](https://developers.openai.com/cookbook/examples/chatgpt/chatgpt_prompt_guide/chatgpt_prompt_guide)를 참고한다.
@@ -62,14 +64,20 @@ python3 scripts/package.py build
 생성물:
 
 - `GRADING.md`: 링크로 읽을 수 있게 자동 생성하는 전체 판독 지침
-- `dist/book-condition-grader-plugin-v0.1.4.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
-- `dist/book-condition-grader-skill-v0.1.4.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
+- `dist/book-condition-grader-plugin-v0.2.0.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
+- `dist/book-condition-grader-skill-v0.2.0.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
 - `dist/book-condition-grader-chatgpt-ko.txt`: 일반 대화용 전체 지침
 - `dist/SHA256SUMS`: 배포물 무결성 확인용
 
 사용자의 사진·`.git`·로컬 인증정보·개발용 실행 스크립트는 플러그인 ZIP에 포함하지 않는다. 텍스트 평가 시나리오와 검증 현황은 포함한다. 패키저 검증은 포털의 보안 스캔이나 실제 사진 판독 평가를 대신하지 않는다.
 
 `GRADING.md`와 README 하단 판독 지침은 Skill과 참조 문서를 합쳐 생성한다. 원본을 수정한 뒤 `guide`로 갱신해야 `check`를 통과한다. portable 패키지는 루트 `plugin.json`과 `skills/`를 사용하고, 개발용 로컬 카탈로그는 `.agents/plugins/marketplace.json`에 둔다. 공식 규격 출처는 [Skill 제작](https://developers.openai.com/plugins/build/skills)과 [Plugin 패키징](https://developers.openai.com/plugins/build/plugins)을 참고한다.
+
+ISBN 검증·링크 생성만 따로 확인할 수 있다. 다음 명령은 네트워크 조회를 하지 않으며 결과의 `lookup_performed`도 false다.
+
+```sh
+python3 skills/book-condition-grader/scripts/isbn_lookup.py 9791141691370
+```
 
 ## OpenAI 공개 제출
 

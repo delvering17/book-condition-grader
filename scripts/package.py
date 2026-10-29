@@ -11,7 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_NAME = "book-condition-grader"
 SKILL_DIR = Path("skills") / SKILL_NAME
-REFERENCES = ("aladin-grading-rules.md", "inspection-guide.md")
+REFERENCES = ("aladin-grading-rules.md", "inspection-guide.md", "aladin-purchase-lookup.md", "result-template.md")
 GRADES = {"최상", "상", "중", "매입불가", "판정 보류"}
 README_START = "<!-- BEGIN GENERATED GRADING -->"
 README_END = "<!-- END GENERATED GRADING -->"
@@ -59,6 +59,7 @@ def plugin_files(root):
     ))
     result.add(SKILL_DIR / "SKILL.md")
     result.add(SKILL_DIR / "agents/openai.yaml")
+    result.add(SKILL_DIR / "scripts/isbn_lookup.py")
     result.update(SKILL_DIR / "references" / name for name in REFERENCES)
     result.update(Path(interface[key]) for key in ("composerIcon", "logo"))
     return sorted(result)
@@ -159,7 +160,7 @@ def standalone(root):
         body = re.sub(r"\[([^\]]+)\]\(references/" + re.escape(ref) + r"\)",
                       lambda match: f"{match[1]} (아래 첨부 참조 문서: {ref})", body)
     parts = ["이 파일은 중고책 판독용 지침과 참조 문서입니다. 책 사진 또는 열람 가능한 영상과 함께 제공하고 판독을 요청하세요.\n"
-             "두 참조 문서가 아래에 포함되어 있습니다. 별도 파일을 찾는 대신 이 파일의 해당 첨부 참조 문서를 읽어 적용하세요.\n", body]
+             "참조 문서가 아래에 함께 포함되어 있습니다. 별도 파일을 찾는 대신 이 파일의 해당 첨부 참조 문서를 읽어 적용하세요.\n", body]
     for ref in REFERENCES:
         parts.extend((f"\n---\n첨부 참조 문서: {ref}\n", (root / SKILL_DIR / "references" / ref).read_text(encoding="utf-8")))
     return "\n".join(parts)
@@ -185,11 +186,6 @@ def grading_guide(root):
 
 def updated_readme(root, content):
     instructions = standalone(root)
-    instructions = re.sub(
-        r"```markdown\n.*?\n```",
-        "결과에는 적용 지침, 예상등급, 판정 근거 표(검사 항목·관찰·규칙 ID·부분등급), 추가 확인, 종합 의견, 매입 확인, 비공식 주의사항을 포함한다.",
-        instructions, flags=re.S,
-    )
     version = read_json(root, "plugin.json")["version"]
     block = f"{README_START}\n\n## 판독 지침과 기준\n\n지침 패키지 버전: {version}\n\n{instructions}\n\n{README_END}"
     if README_START not in content and README_END not in content:

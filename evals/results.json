@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "recorded_at": "2026-10-29",
-  "skill_version": "0.1.4",
+  "skill_version": "0.2.0",
   "cases": [
     {
       "id": "T01",
@@ -298,6 +298,78 @@
       "evidence": [],
       "environment": null,
       "notes": "수정 후 회귀 평가용 시나리오. 실제 ChatGPT 재시험 미실행."
+    },
+    {
+      "id": "T38",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "ISBN・매입 조회와 고정 템플릿 회귀 평가용 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T39",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "ISBN・매입 조회와 고정 템플릿 회귀 평가용 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T40",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "ISBN・매입 조회와 고정 템플릿 회귀 평가용 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T41",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "ISBN・매입 조회와 고정 템플릿 회귀 평가용 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T42",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "ISBN・매입 조회와 고정 템플릿 회귀 평가용 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T43",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "ISBN・매입 조회와 고정 템플릿 회귀 평가용 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T44",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "ISBN・매입 조회와 고정 템플릿 회귀 평가용 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T45",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "ISBN・매입 조회와 고정 템플릿 회귀 평가용 시나리오. 실제 사진 대화 실행 미실행."
+    },
+    {
+      "id": "T46",
+      "status": "not_run",
+      "actual_output": null,
+      "evidence": [],
+      "environment": null,
+      "notes": "ISBN・매입 조회와 고정 템플릿 회귀 평가용 시나리오. 실제 사진 대화 실행 미실행."
     }
   ],
   "field_tests": [

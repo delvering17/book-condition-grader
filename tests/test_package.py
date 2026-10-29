@@ -34,6 +34,7 @@ class PackageTests(unittest.TestCase):
             self.assertIn("plugin.json", names)
             self.assertIn("GRADING.md", names)
             self.assertIn("skills/book-condition-grader/SKILL.md", names)
+            self.assertIn("skills/book-condition-grader/scripts/isbn_lookup.py", names)
             self.assertIn("assets/book.svg", names)
             self.assertNotIn(".env", names)
             self.assertFalse(any(p.endswith(".jpg") for p in names))
@@ -41,6 +42,7 @@ class PackageTests(unittest.TestCase):
         with zipfile.ZipFile(products[1]) as archive:
             names = set(archive.namelist())
             self.assertIn("book-condition-grader/SKILL.md", names)
+            self.assertIn("book-condition-grader/scripts/isbn_lookup.py", names)
             for ref in package.REFERENCES:
                 self.assertIn(f"book-condition-grader/references/{ref}", names)
 
@@ -53,7 +55,7 @@ class PackageTests(unittest.TestCase):
             digest, name = line.split("  ")
             self.assertEqual(digest, hashlib.sha256((self.root / "dist" / name).read_bytes()).hexdigest())
 
-    def test_standalone_contains_both_references(self):
+    def test_standalone_contains_all_references(self):
         text = package.standalone(self.root)
         for ref in package.REFERENCES:
             content = (self.root / package.SKILL_DIR / "references" / ref).read_text()

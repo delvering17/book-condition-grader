@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "book-condition-grader",
-  "version": "0.1.4",
-  "description": "책 사진 또는 열람 가능한 영상 장면을 알라딘 공개 품질표와 대조하는 비공식 한국어 예상등급 도구입니다.",
+  "version": "0.2.0",
+  "description": "책 사진·영상의 비공식 예상 품질등급과 ISBN별 알라딘 팔기 조회 링크를 제공하는 한국어 Skill입니다.",
   "author": {
     "name": "Chanwook Song",
     "url": "https://github.com/delvering17"
@@ -22,12 +22,13 @@
       "interface": {
         "displayName": "중고책 품질등급 판독기",
         "shortDescription": "책 사진으로 확인하는 비공식 예상등급",
-        "longDescription": "중고책 사진 한 장부터 관찰을 시작하고 표지·책등·책배·내부·제본을 알라딘 공개 품질표와 대조합니다. 영상은 실제 장면을 읽을 수 있는 환경에서 사용할 수 있으며, 각 부위·펼친 페이지·손상 부위에서 최소 2초씩 멈춰 촬영하도록 안내합니다. 영상을 읽을 수 없으면 주요 장면을 캡처한 사진을 요청합니다. 확인하지 못한 부분은 확인 불가로 남기며 근거가 부족하면 판정 보류를 사용합니다. 알라딘의 공식 감정이나 매입 승인을 대신하지 않습니다. 별도 영상 디코더·프레임 추출기는 포함하지 않습니다.",
+        "longDescription": "책 사진 또는 열람 가능한 영상으로 알라딘 공개 기준의 예상 품질등급을 안내합니다. 뒷표지 바코드 옆 ISBN을 읽고 공식 팔기 조회 링크를 만들며, 응답을 실제로 읽을 수 있을 때만 ISBN 일치 상품의 매입 상태와 조회 시각을 표시합니다. ISBN이 선명하면 사진을 중복 요청하지 않고, 불명확할 때만 근접 사진이나 번호를 요청합니다. 결과는 간결한 고정 템플릿을 따릅니다. 영상 촬영은 부위마다 최소 2초씩 멈추도록 안내하고 미지원 환경에서는 캡처 사진으로 대체합니다. 실제 매입 승인이나 최종등급을 보장하지 않습니다.",
         "developerName": "Chanwook Song",
         "category": "Productivity",
         "capabilities": [
-          "책 사진 상태 확인",
+          "책 사진·영상 상태 확인",
           "예상 품질등급 안내",
+          "ISBN별 알라딘 팔기 조회",
           "추가 촬영 안내"
         ],
         "websiteURL": "https://github.com/delvering17/book-condition-grader",
@@ -44,7 +45,7 @@
         "logo": "./assets/book.svg"
       },
       "publication": {
-        "release_notes": "사용자 테스트에서 확인된 지침 미준수를 보완했습니다. README 본문에 전체 지침과 기준을 포함하고, 외부 블로그 기준 대체·미확인 제본 등급·미측정 책등 찢김의 단정을 막도록 안내합니다. 수정 후 일반 ChatGPT 재시험은 아직 미실행입니다."
+        "release_notes": "뒷표지 ISBN 확인·체크 숫자 검증·알라딘 팔기 조회 링크와 조건부 매입 상태 확인을 추가했습니다. 결과 템플릿을 간결하게 통일하고 조회 실패와 실제 매입 가능을 구분합니다."
       }
     }
   }

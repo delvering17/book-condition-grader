@@ -1,15 +1,17 @@
 # 검증 보고서
 
-기록일: 2026-10-29 · 패키지 버전: 0.1.4
+기록일: 2026-10-29 · 패키지 버전: 0.2.0
 
-기존 링크 방식의 일반 ChatGPT 실사용에서 지침 미준수 실패가 확인됐다. [실사용 검토](field-test-report.md)에 개인 사진·대화 전문 없이 문제를 기록했다. 수정된 0.1.4의 일반 ChatGPT 재시험은 아직 완료하지 않았다. `results.json`의 정형 시나리오 37개는 모두 `not_run`이며, 별도 실사용 실패 1건과 패키지 검사를 구분한다.
+기존 링크 방식의 일반 ChatGPT 실사용에서 지침 미준수 실패가 확인됐다. [실사용 검토](field-test-report.md)에 개인 사진·대화 전문 없이 문제를 기록했다. 수정된 0.2.0의 일반 ChatGPT 재시험은 아직 완료하지 않았다. `results.json`의 정형 시나리오 46개는 모두 `not_run`이며, 별도 실사용 실패 1건과 패키지 검사를 구분한다.
 
 | 검사 | 결과 | 범위 |
 | --- | --- | --- |
 | 알라딘 PC·모바일 기준 확인 | 완료 | 도서표·매입불가·반송 안내 대조, 2cm·5쪽 경계 차이 기록 |
 | OpenAI 공식 문서 확인 | 완료 | Skill 전용·portable 형식·제출·로컬 카탈로그·이미지 입력 |
-| 프로젝트 패키지 검사 | 통과 | scripts/package.py check: 정형 시나리오 37개·실행 0개, 별도 실사용 실패 1건 기록 |
-| 패키징 회귀 검사 | 10개 통과 | ZIP·참조·개인 자료 제외·재현성·증거 없는 성공 기록 거부·README 본문 기준 포함 및 변조·갱신 누락 검출 |
+| 프로젝트 패키지 검사 | 통과 | scripts/package.py check: 정형 시나리오 46개·실행 0개, 별도 실사용 실패 1건 기록 |
+| 패키징 회귀 검사 | 17개 통과 | ZIP·참조·개인 자료 제외·재현성·증거 없는 성공 기록 거부·README 본문 기준 포함 및 변조·갱신 누락 검출 |
+| ISBN 검증·URL 생성 | 7개 통과 (위 17개에 포함) | ISBN-13·ISBN-10·X·잘못된 체크 숫자·부가기호·쿼리 주입 거부, 정확한 읽기 전용 URL 생성 |
+| 알라딘 ISBN 검색 폼·예시 HTTP 조회 | 직접 확인 | ActionType=1·SearchTarget=All·KeyWord GET 폼. 사용자 예시 번호의 ISBN 일치 상품·매입 안내 확인. 웹 읽기 도구는 검색 URL 접근 실패 |
 | 공식 Agent Plugins JSON Schema | 통과 | agent-plugins.org의 1.0.0 스키마 다운로드 후 jsonschema Draft202012Validator 적용 |
 | Skill Creator quick_validate | 통과 | 공식 로컬 skill-creator의 검사기: Skill is valid! |
 | Codex CLI 로컬 카탈로그 발견 | 통과 | 0.165.0-alpha.1.2, 일회성 -c marketplaces 설정으로 AVAILABLE·version 0.1.0 반환 |
@@ -24,7 +26,7 @@
 
 ## 재현 기록
 
-패키지 검사·10개 회귀 검사·빌드: Python 3.9.6, 외부 의존성 없음. Skill Creator 검사와 JSON Schema 검사는 `/tmp`의 임시 Python 가상환경에 PyYAML·jsonschema를 설치해 실행했다. 이 개발용 도구들은 사용자 판독 실행에 필요하지 않다.
+패키지 검사·17개 회귀 검사·빌드: Python 3.9.6, 외부 의존성 없음. Skill Creator 검사와 JSON Schema 검사는 `/tmp`의 임시 Python 가상환경에 PyYAML·jsonschema를 설치해 실행했다. 이 개발용 도구들은 사용자 판독 실행에 필요하지 않다.
 
 공식 스키마: [Agent Plugins 1.0.0](https://agent-plugins.org/schemas/1.0.0/plugin.schema.json). 스키마 검사는 portable manifest만 검증하며 내부 OpenAI 확장 필드 전체의 포털 유효성은 보장하지 않는다. 확장 필드의 길이·경로·아이콘은 별도 패키지 검사로 확인했다.
 
@@ -51,3 +53,5 @@ codex -c 'marketplaces.book-condition-grader-local.source="/absolute/path/to/boo
 0.1.4 변경: 기존 실사용 실패를 기록하고 README 본문에 판독 지침과 기준을 직접 포함했다. 일반 검색·개인 블로그 기준 대체를 하지 않도록 출처 절차를 명시하고, 적용 지침 표시·규칙 ID·제본 확인 불가·책등 찢김 보류를 보완했다. 새 회귀 시나리오 T34~T37은 아직 모델 실행을 하지 않았다.
 
 0.1.4 게시 후 웹 읽기 확인에서는 저장소 홈이 새로 추가한 본문 지침과 영상 안내 없이 이전 README를 반환했다. 최신 GitHub 파일과 웹 읽기 서비스의 캐시 결과가 다를 수 있으므로, 같은 홈 주소만으로 최신 규칙 전달을 강제할 수 없다. 지침 패키지 버전을 본문에 표시하며 웹 도구가 최신 규칙을 읽었다고 보고하지 않는다.
+
+0.2.0 변경: 뒷표지 ISBN 확인·체크 숫자 검증·공식 팔기 조회 링크와 조건부 응답 확인을 추가하고 간결한 결과 템플릿을 참조 문서로 통일했다. 예시 ISBN 9791141691370의 일반 HTTP 응답에는 일치 상품 1건과 매입 안내가 있었지만, 웹 읽기 도구의 같은 URL 열람은 실패했다. 이는 전체 사진 판독·ChatGPT 자동 조회의 성공을 의미하지 않는다. T38~T46을 포함한 정형 시나리오 46개는 미실행이다.
