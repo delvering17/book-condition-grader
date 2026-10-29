@@ -166,8 +166,10 @@ def standalone(root):
 
 
 def grading_guide(root):
+    version = read_json(root, "plugin.json")["version"]
     return (
         "# 책 사진 품질 판독 지침\n\n"
+        f"지침 패키지 버전: {version}\n\n"
         "<!-- Skill과 참조 문서에서 자동 생성. python3 scripts/package.py guide로 갱신합니다. -->\n\n"
         "책 사진 또는 영상을 첨부하고 아래 저장소 링크만 ChatGPT에 보내세요. 영상은 실제 장면을 읽을 수 있는 환경에서 사용합니다.\n\n"
         "```text\n"
@@ -188,7 +190,8 @@ def updated_readme(root, content):
         "결과에는 적용 지침, 예상등급, 판정 근거 표(검사 항목·관찰·규칙 ID·부분등급), 추가 확인, 종합 의견, 매입 확인, 비공식 주의사항을 포함한다.",
         instructions, flags=re.S,
     )
-    block = f"{README_START}\n\n## 판독 지침과 기준\n\n{instructions}\n\n{README_END}"
+    version = read_json(root, "plugin.json")["version"]
+    block = f"{README_START}\n\n## 판독 지침과 기준\n\n지침 패키지 버전: {version}\n\n{instructions}\n\n{README_END}"
     if README_START not in content and README_END not in content:
         return content.rstrip() + "\n\n" + block + "\n"
     if content.count(README_START) != 1 or content.count(README_END) != 1:
