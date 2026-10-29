@@ -1005,6 +1005,43 @@
           "A10"
         ]
       }
+    },
+    {
+      "id": "T33",
+      "title": "각 부위에서 2초씩 머문 영상의 열람 가능한 장면",
+      "tags": [
+        "readable-video",
+        "two-second-hold"
+      ],
+      "input": {
+        "media": "video",
+        "fixtures": [],
+        "fixture_spec": "호스트에서 실제로 열람되는 영상 또는 시점이 확인된 프레임. 여섯 외관 부위를 각각 최소 2초씩 보여주고, 00:00~00:02 앞표지 모서리에 가벼운 마모가 선명함. 내부는 촬영되지 않음.",
+        "user_prompt": "https://github.com/delvering17/book-condition-grader",
+        "user_confirmation": ""
+      },
+      "expected": {
+        "grade": "상",
+        "scope": "확인된 영상 장면·잠정",
+        "purchase_status": "미조회",
+        "reasoning": [
+          "실제로 보이는 모서리 마모를 상에 대응하고 시점 또는 프레임을 근거로 기록. 열람 가능한 영상인데도 사진을 필수로 요구하지 않음. 2초 체류를 내부 무손상이나 판독 정확도의 증거로 사용하지 않음."
+        ],
+        "unknowns": [
+          "내부 필기·얼룩 총쪽수",
+          "내부·제본",
+          "원래 구성품",
+          "실시간 매입 조건"
+        ],
+        "follow_up": [
+          "필요한 내부·제본 장면을 최소 2초씩 보여주거나 펼친 사진 추가."
+        ],
+        "rule_ids": [
+          "A01",
+          "A05",
+          "D01"
+        ]
+      }
     }
   ]
 }

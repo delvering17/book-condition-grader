@@ -4,13 +4,13 @@
 
 ## 일반 ChatGPT 사용자
 
-책 사진을 첨부하고 아래 저장소 링크만 보낸다:
+책 사진 또는 영상을 첨부하고 아래 저장소 링크만 보낸다:
 
 ```text
 https://github.com/delvering17/book-condition-grader
 ```
 
-README에서 [전체 판독 지침](../GRADING.md)으로 연결한다. 사용자에게 개별 참조 문서를 지정하거나 별도의 요청 문장을 덧붙이도록 요구하지 않는다. 사진이 없다면 외관 6방향 촬영을 안내하되 한 장부터 받을 수 있다. 이 사용 경로는 링크·이미지 열람을 지원하는 환경이 필요하며 실제 사진 판독은 아직 미검증이다.
+README에서 [전체 판독 지침](../GRADING.md)으로 연결한다. 사용자에게 개별 참조 문서를 지정하거나 별도의 요청 문장을 덧붙이도록 요구하지 않는다. 첨부가 없다면 외관 6방향 사진 또는 장면마다 최소 2초씩 멈춰 찍는 영상을 안내한다. 사진은 한 장부터 받을 수 있다. 영상은 실제 장면 열람이 가능한 환경에서만 검사하고, 미지원 환경에서는 주요 장면을 캡처한 사진으로 대체한다. 실제 사진·영상 판독은 아직 미검증이다.
 
 ## Skill 설치 또는 파일 첨부로 사용
 
@@ -62,8 +62,8 @@ python3 scripts/package.py build
 생성물:
 
 - `GRADING.md`: 링크로 읽을 수 있게 자동 생성하는 전체 판독 지침
-- `dist/book-condition-grader-plugin-v0.1.2.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
-- `dist/book-condition-grader-skill-v0.1.2.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
+- `dist/book-condition-grader-plugin-v0.1.3.zip`: 루트 plugin.json, Skill, 아이콘, 이용·개인정보 안내 포함
+- `dist/book-condition-grader-skill-v0.1.3.zip`: 최상위 book-condition-grader/ 아래 SKILL.md와 참조 문서
 - `dist/book-condition-grader-chatgpt-ko.txt`: 일반 대화용 전체 지침
 - `dist/SHA256SUMS`: 배포물 무결성 확인용
 

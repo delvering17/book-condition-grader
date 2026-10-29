@@ -146,7 +146,7 @@ def standalone(root):
     for ref in REFERENCES:
         body = re.sub(r"\[([^\]]+)\]\(references/" + re.escape(ref) + r"\)",
                       lambda match: f"{match[1]} (아래 첨부 참조 문서: {ref})", body)
-    parts = ["이 파일은 중고책 판독용 지침과 참조 문서입니다. 사진과 함께 제공하고 판독을 요청하세요.\n"
+    parts = ["이 파일은 중고책 판독용 지침과 참조 문서입니다. 책 사진 또는 열람 가능한 영상과 함께 제공하고 판독을 요청하세요.\n"
              "두 참조 문서가 아래에 포함되어 있습니다. 별도 파일을 찾는 대신 이 파일의 해당 첨부 참조 문서를 읽어 적용하세요.\n", body]
     for ref in REFERENCES:
         parts.extend((f"\n---\n첨부 참조 문서: {ref}\n", (root / SKILL_DIR / "references" / ref).read_text(encoding="utf-8")))
@@ -157,13 +157,14 @@ def grading_guide(root):
     return (
         "# 책 사진 품질 판독 지침\n\n"
         "<!-- Skill과 참조 문서에서 자동 생성. python3 scripts/package.py guide로 갱신합니다. -->\n\n"
-        "책 사진을 첨부하고 아래 저장소 링크만 ChatGPT에 보내세요.\n\n"
+        "책 사진 또는 영상을 첨부하고 아래 저장소 링크만 ChatGPT에 보내세요. 영상은 실제 장면을 읽을 수 있는 환경에서 사용합니다.\n\n"
         "```text\n"
         "https://github.com/delvering17/book-condition-grader\n"
         "```\n\n"
-        "이 문서를 읽는 AI는 사용자가 첨부한 책 사진을 아래 지침으로 검사한다. "
+        "이 문서를 읽는 AI는 첨부한 책 사진 또는 실제로 열람 가능한 영상 장면을 아래 지침으로 검사한다. "
         "검사 절차와 참조 내용은 이 문서에 함께 수록되어 있으므로 사용자에게 다른 파일을 읽으라고 지시할 필요가 없다. "
-        "사진이 없으면 한 장부터 요청한다. 링크나 사진의 내용을 실제로 읽을 수 없는 경우에는 그 한계를 알린다.\n\n"
+        "첨부가 없으면 사진 또는 장면마다 최소 2초씩 멈춰 찍는 영상의 촬영 방법을 안내한다. "
+        "영상 장면을 읽을 수 없으면 캡처 사진을 요청한다. 링크나 첨부 내용을 읽지 못한 상태에서 판독한 척하지 않는다.\n\n"
         + standalone(root)
     )
 
