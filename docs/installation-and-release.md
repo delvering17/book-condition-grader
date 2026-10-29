@@ -1,24 +1,28 @@
 # 설치와 공개 배포
 
-확인일: 2026-10-29. [OpenAI 패키징](https://developers.openai.com/plugins/build/plugins), [제출 절차](https://developers.openai.com/plugins/deploy/submission), [지침](https://developers.openai.com/plugins/plugin-guidelines)을 직접 확인했다. 문서상 지원과 이 프로젝트의 실기기 시험 결과는 [호환성 현황](compatibility.md)에서 구분한다.
+## 사진과 링크로 바로 사용
 
-## 일반 ChatGPT 사용자
-
-책 사진 또는 영상을 첨부하고 아래 저장소 링크만 보낸다:
+사진과 웹 링크를 읽을 수 있는 AI 도구에 책 사진 또는 영상을 첨부하고 아래 저장소 링크만 보낸다:
 
 ```text
 https://github.com/delvering17/book-condition-grader
 ```
 
-README 자체에 전체 지침과 기준을 포함한다. 같은 내용을 [전체 판독 지침](../GRADING.md)에서도 읽을 수 있다. 사용자에게 개별 참조 문서를 지정하거나 별도의 요청 문장을 덧붙이도록 요구하지 않는다. 첨부가 없다면 외관 6방향 사진 또는 장면마다 최소 2초씩 멈춰 찍는 영상을 안내한다. 사진은 한 장부터 받을 수 있다. 영상은 실제 장면 열람이 가능한 환경에서만 검사하고, 미지원 환경에서는 주요 장면을 캡처한 사진으로 대체한다. 기존 일반 ChatGPT 실사용에서 지침 미준수가 확인됐다. 수정본 재시험은 아직 완료하지 않았다.
+README 자체에 전체 지침과 기준을 포함한다. 같은 내용을 [전체 판독 지침](../GRADING.md)에서도 읽을 수 있다. 사용자에게 개별 참조 문서를 지정하거나 별도의 요청 문장을 덧붙이도록 요구하지 않는다. 첨부가 없다면 외관 6방향 사진 또는 장면마다 최소 2초씩 멈춰 찍는 영상을 안내한다. 사진은 한 장부터 받을 수 있다. 영상은 실제 장면 열람이 가능한 환경에서만 검사하고, 미지원 환경에서는 주요 장면을 캡처한 사진으로 대체한다.
 
 뒷표지 바코드 옆 ISBN이 선명하면 별도 바코드 사진 없이 알라딘 팔기 조회 링크를 만든다. 실행 환경이 검색 응답을 읽을 수 있으면 ISBN 일치 상품의 매입 상태·등급별 매입 예상가·조회 시각을 표시한다. 예상등급에 대응하는 금액은 잠정 여부를 함께 표시하고, 판정 보류·매입불가 상태에서는 적용 금액을 산정하지 않는다. 읽지 못하면 직접 조회 링크와 실시간 확인 못함을 표시하며 가격을 추정하지 않는다. ISBN이 불명확할 때만 근접 사진이나 번호를 요청한다.
 
 ## Skill 설치 또는 파일 첨부로 사용
 
+### 지침 파일 첨부
+
+링크를 열 수 없는 AI 도구에서는 [전체 판독 지침](../GRADING.md)을 파일로 저장해 사진과 함께 대화에 첨부하고 “첨부 지침으로 이거 품질판별해줘”라고 요청한다. [릴리스](https://github.com/delvering17/book-condition-grader/releases)의 `book-condition-grader-chatgpt-ko.txt`도 같은 용도의 전체 지침이다. 파일 이름과 무관하게 텍스트 파일과 사진을 읽을 수 있는 도구에서 활용할 수 있다. 첨부 파일을 읽지 못하면 지침 내용을 메시지에 붙여 넣는다. 새 대화에는 다시 제공해야 한다.
+
+### ChatGPT에서 Skill 설치
+
 현재 OpenAI 디렉터리에는 게시되지 않았다. [GitHub Releases](https://github.com/delvering17/book-condition-grader/releases)에서 제공하는 Skill ZIP을, 계정에 제공되는 Skills → New Skill → Upload from your computer 메뉴로 업로드한다. 새 대화에서 Skill을 선택하고 사진을 첨부한다. [공식 업로드 사용 예](https://developers.openai.com/cookbook/examples/chatgpt/chatgpt_prompt_guide/chatgpt_prompt_guide)를 참고한다.
 
-링크를 열 수 없고 Skill 설치도 지원하지 않는 환경이라면 릴리스의 `book-condition-grader-chatgpt-ko.txt`를 사진과 함께 대화에 첨부하고 “첨부 지침으로 이거 품질판별해줘”라고 요청한다. 이 파일은 SKILL과 참조 문서를 합쳐 만든 것이어서 참조 파일이 빠지지 않는다. 텍스트 파일의 내용을 읽지 못하면 파일 내용을 메시지에 붙여 넣는다. 새 대화에는 다시 제공해야 한다. 일반 대화에 ZIP 업로드만 해서는 설치되지 않는다.
+일반 대화에 ZIP 업로드만 해서는 설치되지 않는다. 설치 메뉴가 없는 도구에서는 위의 지침 파일 첨부 방법을 사용한다.
 
 공개 승인 후의 목표 흐름은 Plugins에서 설치 → 책 사진 업로드 → 예상등급 확인이다. 공개 게시 URL·자격·설치 가능 계정은 승인 전까지 확약하지 않는다.
 
@@ -50,7 +54,9 @@ codex plugin marketplace list
 
 ## 배포물 만들기
 
-Python 3.9 이상에서 외부 패키지 없이 검사·패키징할 수 있다. 백엔드·DB·MCP·별도 모델 학습이나 API 키는 필요 없다. 사진 이해는 실행 중인 ChatGPT/Codex 환경을 사용한다.
+Python 3.9 이상에서 외부 패키지 없이 검사·패키징할 수 있다. 백엔드·DB·MCP·별도 모델 학습이나 API 키는 필요 없다. 사진 이해는 실행 중인 AI 도구의 이미지 입력 기능을 사용한다.
+
+개발·검증 기록과 실행 여부는 [검증 보고서](../evals/validation-report.md), 제품별 공식 지원과 미구현 항목은 [호환성 현황](compatibility.md)에 기록한다.
 
 ```sh
 git clone https://github.com/delvering17/book-condition-grader.git
@@ -80,6 +86,8 @@ python3 skills/book-condition-grader/scripts/isbn_lookup.py 9791141691370
 ```
 
 ## OpenAI 공개 제출
+
+확인일: 2026-10-29. [OpenAI 패키징](https://developers.openai.com/plugins/build/plugins), [제출 절차](https://developers.openai.com/plugins/deploy/submission), [지침](https://developers.openai.com/plugins/plugin-guidelines)을 직접 확인했다. 아래 절차는 OpenAI Plugin 배포에 해당한다.
 
 1. [제출 포털](https://platform.openai.com/plugins) 접근과 제출 권한을 확인한다. 공식 문서에 따르면 조직 소유자 또는 Apps Management Write 권한이 필요하며 개인/사업자 신원 확인을 완료해야 한다.
 2. 게시자명과 지원·개인정보·이용 안내 URL이 실제 게시자와 일치하고 외부에서 열리는지 확인한다. `plugin.json`의 이름·버전·설명·아이콘을 검토한다. 임시 URL이나 가짜 감정 결과를 제출하지 않는다.

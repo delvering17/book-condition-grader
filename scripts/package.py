@@ -172,7 +172,7 @@ def grading_guide(root):
         "# 책 사진 품질 판독 지침\n\n"
         f"지침 패키지 버전: {version}\n\n"
         "<!-- Skill과 참조 문서에서 자동 생성. python3 scripts/package.py guide로 갱신합니다. -->\n\n"
-        "책 사진 또는 영상을 첨부하고 아래 저장소 링크만 ChatGPT에 보내세요. 영상은 실제 장면을 읽을 수 있는 환경에서 사용합니다.\n\n"
+        "사진과 웹 링크를 읽을 수 있는 AI 도구에 책 사진 또는 영상을 첨부하고 아래 저장소 링크를 보내세요. 영상은 실제 장면을 읽을 수 있는 환경에서 사용합니다.\n\n"
         "```text\n"
         "https://github.com/delvering17/book-condition-grader\n"
         "```\n\n"

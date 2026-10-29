@@ -43,8 +43,8 @@ https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx?ActionType=1&SearchTarge
 
 조회 실패·ISBN 미확인·상품 불일치·가격 누락이면 해당 가격은 `확인 못함`으로 둔다. 특히 상 매입가가 빠졌다고 최상·중 가격을 평균 내거나 다른 등급의 금액을 사용하지 않는다. ‘-’나 공란을 0원으로 바꾸지 않고, 정가의 일정 비율로 추정하지 않는다. 페이지가 금액을 명시적으로 0원으로 표시했다면 그 표시만 전달하고 매입 가능 여부는 별도로 확인한다. 조회 가격은 최종 지급액을 보장하지 않는다.
 
-## 확인한 출처와 범위
+## 조회 주소와 ISBN 기준 출처
 
-2026-10-29 확인: [알라딘 팔기 검색](https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx)의 GET 폼은 `ActionType=1`, `SearchTarget=All`, `KeyWord`를 사용한다. [사용자 제공 예시 ISBN 조회](https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx?ActionType=1&SearchTarget=All&KeyWord=9791141691370)의 일반 HTTP 응답에서 ISBN 일치 상품과 매입 안내가 표시되는 것을 확인했다. 웹 읽기 도구에서는 이 검색 URL 열람이 실패했으므로 모든 ChatGPT 환경의 자동 조회 성공을 보장하지 않는다.
+2026-10-29 기준: [알라딘 팔기 검색](https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx)의 GET 폼은 `ActionType=1`, `SearchTarget=All`, `KeyWord`를 사용한다. 웹 페이지를 읽을 수 있는 도구에서 같은 주소로 조회한다.
 
 ISBN 검증 출처: [International ISBN Agency](https://www.isbn-international.org/content/what-isbn/10), [미국 ISBN 기관 FAQ](https://www.isbn.org/faqs_general_questions), [ISBN 변환 안내](https://www.isbn-international.org/content/isbn-calculator). ISBN·링크 처리와 매입 상태 요약은 프로젝트의 추가 기능이며 알라딘의 공식 품질등급 규칙을 변경하지 않는다.

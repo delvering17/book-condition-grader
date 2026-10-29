@@ -2,7 +2,7 @@
 
 **책 사진이나 영상으로 알라딘 기준의 예상 품질등급을 판독하고, 뒷표지의 ISBN으로 알라딘 매입 가능 여부와 등급별 매입가를 함께 확인합니다.**
 
-ChatGPT에 책 사진 또는 영상을 첨부한 뒤, 아래 링크를 복사해 보내세요.
+사진과 웹 링크를 읽을 수 있는 AI 도구에 책 사진 또는 영상을 첨부한 뒤, 아래 링크를 복사해 보내세요.
 
 ```text
 https://github.com/delvering17/book-condition-grader
@@ -10,7 +10,7 @@ https://github.com/delvering17/book-condition-grader
 
 결과에는 예상 품질등급·판정 근거, 알라딘 매입 가능 여부, 최상·상·중별 매입가와 예상등급에 해당하는 금액, 직접 확인할 수 있는 팔기 조회 링크가 표시됩니다. 조회 화면을 읽지 못하면 매입 여부와 가격은 확인하지 못했다고 표시합니다. 영상은 내용을 읽을 수 있는 환경에서 사용할 수 있습니다. 사진이나 영상 없이 링크만 보내면 촬영 방법부터 안내합니다.
 
-판독에 필요한 지침과 기준은 이 페이지 아래에 함께 수록했습니다. 지침을 읽고 적용한 답변은 첫 줄에 **‘적용 지침: Book Condition Grader’**를 표시하도록 했습니다. 이 표시만으로 스킬이 설치됐거나 실제로 호출됐다는 뜻은 아닙니다.
+판독에 필요한 지침과 기준은 이 페이지 아래에 함께 수록했습니다.
 
 ## 책 사진은 이렇게 찍으세요
 
@@ -49,25 +49,22 @@ https://github.com/delvering17/book-condition-grader
 
 ## 사용 순서
 
-1. ChatGPT 새 대화에 책 사진 또는 영상을 첨부합니다.
+1. 사용하는 AI 도구의 새 대화에 책 사진 또는 영상을 첨부합니다.
 2. 맨 위 코드블록의 저장소 링크를 복사해 보냅니다.
 3. 예상 품질등급·판정 근거와 알라딘 매입 가능 여부·매입가를 확인합니다. 필요한 사진을 요청하면 이어서 올립니다.
 
 결과는 **최상·상·중·매입불가**로 안내하며, 근거가 부족하면 **판정 보류**로 표시합니다. 뒷표지에서 ISBN을 읽으면 **알라딘 팔기 조회 링크**를 함께 제공합니다. 조회 결과를 읽을 수 있으면 현재 매입 상태와 **최상·상·중별 매입 예상가**를 표로 보여주고, 예상등급에 해당하는 금액을 표시합니다. 읽지 못한 금액은 추정하지 않습니다. [결과 예시 보기](docs/grading-example.md)
 
-링크와 첨부 내용을 읽을 수 있는 환경이 필요합니다. 링크가 열리지 않을 때의 사용 방법은 [설치·파일 첨부 안내](docs/installation-and-release.md)를 참고하세요.
+사진과 링크 내용을 읽을 수 있는 환경이 필요합니다. 링크가 열리지 않을 때는 [지침 파일 첨부 방법](docs/installation-and-release.md#skill-설치-또는-파일-첨부로-사용)을 참고하세요.
 
 ## 알아두세요
 
 알라딘과 제휴한 공식 감정 서비스가 아닌 AI 예상 도구입니다. 실제 매입 여부와 최종등급은 알라딘에서 결정합니다. 외관 사진만으로 책 내부 전체를 확인할 수는 없으며, 조회상 매입 대상이어도 실물 상태나 판본·재고에 따라 매입이 거절될 수 있습니다.
 
-기존 링크 방식의 사용자 테스트에서 지침 미준수가 확인되어 보완했습니다. 이번 수정본의 일반 ChatGPT 재시험은 아직 완료하지 않았습니다. 자세한 범위는 [검증 현황](evals/validation-report.md)에 정리했습니다.
-
 ## 자세히 보기
 
 - [판독 지침·기준](GRADING.md)
-- [설치·배포·개발 안내](docs/installation-and-release.md)
-- [기능과 제약](docs/compatibility.md)
+- [다른 사용 방법](docs/installation-and-release.md)
 - [개인정보 안내](docs/privacy.md) · [이용 안내](docs/terms.md) · [MIT License](LICENSE)
 
 공식 기준 출처: [알라딘 PC 안내](https://www.aladin.co.kr/shop/usedshop/wc2b_sales.aspx?tab=3) · [알라딘 모바일 안내](https://www.aladin.co.kr/m/c2b/c2b_help.aspx)
@@ -332,9 +329,9 @@ https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx?ActionType=1&SearchTarge
 
 조회 실패·ISBN 미확인·상품 불일치·가격 누락이면 해당 가격은 `확인 못함`으로 둔다. 특히 상 매입가가 빠졌다고 최상·중 가격을 평균 내거나 다른 등급의 금액을 사용하지 않는다. ‘-’나 공란을 0원으로 바꾸지 않고, 정가의 일정 비율로 추정하지 않는다. 페이지가 금액을 명시적으로 0원으로 표시했다면 그 표시만 전달하고 매입 가능 여부는 별도로 확인한다. 조회 가격은 최종 지급액을 보장하지 않는다.
 
-## 확인한 출처와 범위
+## 조회 주소와 ISBN 기준 출처
 
-2026-10-29 확인: [알라딘 팔기 검색](https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx)의 GET 폼은 `ActionType=1`, `SearchTarget=All`, `KeyWord`를 사용한다. [사용자 제공 예시 ISBN 조회](https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx?ActionType=1&SearchTarget=All&KeyWord=9791141691370)의 일반 HTTP 응답에서 ISBN 일치 상품과 매입 안내가 표시되는 것을 확인했다. 웹 읽기 도구에서는 이 검색 URL 열람이 실패했으므로 모든 ChatGPT 환경의 자동 조회 성공을 보장하지 않는다.
+2026-10-29 기준: [알라딘 팔기 검색](https://www.aladin.co.kr/shop/usedshop/wc2b_search.aspx)의 GET 폼은 `ActionType=1`, `SearchTarget=All`, `KeyWord`를 사용한다. 웹 페이지를 읽을 수 있는 도구에서 같은 주소로 조회한다.
 
 ISBN 검증 출처: [International ISBN Agency](https://www.isbn-international.org/content/what-isbn/10), [미국 ISBN 기관 FAQ](https://www.isbn.org/faqs_general_questions), [ISBN 변환 안내](https://www.isbn-international.org/content/isbn-calculator). ISBN·링크 처리와 매입 상태 요약은 프로젝트의 추가 기능이며 알라딘의 공식 품질등급 규칙을 변경하지 않는다.
 
